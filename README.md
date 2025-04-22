@@ -117,3 +117,7 @@ npm run generateList
 ```
 
 4. The output file will be saved as `src/data/output_list.json`. The file will contain a list of all past participants. They are unique by the email address. i.e., no duplicate email appears in different participants. This file can be used in the next step to export the invitation list.
+
+## (Optional) Create the invitation list for the next survey wave
+
+The directory [`./src/R`](src/R) contains the R script to create the invitation list for the next survey wave. Please refer to the readme file in the directory for more information.
