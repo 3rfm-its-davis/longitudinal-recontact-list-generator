@@ -12,7 +12,7 @@ To create an invitation list for a survey wave with UID, you need to follow thes
 
 Please follow this naming convention. You need to edit the `generate-invite_list.R` script (line 5 and later) to point the correct path of these datasets. The datasets should be in the `data` folder.
 
-2. Run `uid_2025.R`. It will generate and export a csv file with the following information.
+2. Run `generate-invite_list.R`. It will generate and export a csv file with the following information.
    - UID: The unique identifier for each participant.
    - firstVersion: The first version of the survey that the participant joined.
    - lastVersion: The last version of the survey that the participant joined.

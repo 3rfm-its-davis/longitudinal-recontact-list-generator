@@ -2,8 +2,8 @@ library(jsonlite)
 library(haven)
 library(tidyverse)
 
-data_Y18 = read_csv(file.path("src", "R", "data", "2018.sav"))
-data_Y19 = read_csv(file.path("src", "R", "data", "2019.sav"))
+data_Y18 = read_csv(file.path("src", "R", "data", "2018.csv"))
+data_Y19 = read_csv(file.path("src", "R", "data", "2019.csv"))
 data_S20 = read_sav(file.path("src", "R", "data", "2020-1.sav"))
 data_F20 = read_sav(file.path("src", "R", "data", "2020-2.sav"))
 data_Y21 = read_sav(file.path("src", "R", "data", "2021.sav"))
@@ -134,13 +134,25 @@ id_list = invite_list %>%
   select(-index)
 
 for (i in 1:dim(id_list)[1]) {
+  if (i %% 100 == 0) {
+    print(i)
+  }
+
   id_list[i, "firstVersion"] = id_list[i, "firstVersion"] %>% as.character()
+
+  if (is.na(id_list[i, "userLanguage"])) {
+    id_list[i, "userLanguage"] = "EN_NA"
+  }
 
   if (!is.na(id_list[i, "UID"])) {
     next
   }
 
-  if (id_list[i, "firstVersion"] == "2018-l" || id_list[i, "firstVersion"] == "2018-m") {
+  if (
+    id_list[i, "firstVersion"] == "2018-l" ||
+      id_list[i, "firstVersion"] == "2018-mo" ||
+      id_list[i, "firstVersion"] == "2018-mm"
+  ) {
     last_uid_18 = last_uid_18 + 1
     first_uid = paste0("18YO", sprintf("%06d", as.numeric(last_uid_18)))
   } else if (id_list[i, "firstVersion"] == "2019") {
